@@ -1,0 +1,94 @@
+/* Created by Dayu Wang (dwang@stchas.edu) on 2025-11-13 */
+
+/* Last updated by Dayu Wang (dwang@stchas.edu) on 2025-11-13 */
+
+
+body {
+    background-color: white;
+    font-family: Verdana, sans-serif;
+    font-size: 16pt;
+    overflow: auto;
+}
+
+button {
+    border: 1pt solid black;
+    font-size: 40pt;
+    margin: 0;
+    padding: 0;
+    height: 80px;
+    vertical-align: middle;
+    width: 80px;
+}
+
+button[id|=white] {
+    background-color: white;
+}
+
+button[id|=gray] {
+    background-color: whitesmoke;
+}
+
+div.colIndex {
+    background-color: white;
+    border: none;
+    color: black;
+    display: inline-block;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 80px;
+}
+
+div#dimension {
+    position: absolute;
+    left: 12pt;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+div.rowIndex {
+    background-color: white;
+    border: none;
+    color: black;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    width: 40px;
+}
+
+div.topleft {
+    background-color: white;
+    border: none;
+    display: inline-block;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    width: 40px;
+}
+
+input#n {
+    border: none;
+    border-bottom: 1px solid black;
+    color: black;
+    font-family: Verdana, sans-serif;
+    font-size: 16pt;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    text-align: center;
+    width: 40px;
+}
+
+input#n:focus {
+    outline: none;
+}
+
+#chessboard {
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    white-space: nowrap;
+}
