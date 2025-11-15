@@ -1,11 +1,19 @@
 // Created by Dayu Wang (dwang@stchas.edu) on 2025-11-13
 
-// Last updated by Dayu Wang (dwang@stchas.edu) on 2025-11-13
+// Last updated by Dayu Wang (dwang@stchas.edu) on 2025-11-15
 
 
 /** Returns the dimension of the chessboard from user input. */
 const getDimension = () => {
-    return parseInt(document.getElementById('n').value);
+    try {
+        const n = parseInt(document.getElementById('n').value);
+        if (n >= 4 && n <= 10) { return n; }
+        document.getElementById('n').value = 8;
+        return 8;
+    } catch (_) {
+        document.getElementById('n').value = 8;
+        return 8;
+    }
 };
 
 /** Generates a blank chessboard. */
@@ -29,13 +37,29 @@ const loadChessboard = () => {
 const addQueen = () => {
     document.querySelectorAll('button[id|=white], button[id|=gray]').forEach(button => {
         button.addEventListener('click', () => {
-            if (button.textContent.trim().length === 0) {
-                if (isValid(button)) { button.style.color = 'black'; }
-                else { button.style.color = 'red'; }
-                button.innerHTML = String.raw`&#9819`;
+            if (button.textContent.trim().length === 0) { button.innerHTML = String.raw`&#9819`; }
+            else { button.innerHTML = String.raw`&nbsp;`; }
+            for (let row = 0; row < getDimension(); row++) {
+                for (let col = 0; col < getDimension(); col++) {
+                    const b = getButton(row, col);
+                    if (b.textContent.trim().length === 0) { continue; }
+                    b.innerHTML = String.raw`&nbsp;`;
+                    if (isValid(b)) { b.style.color = 'black'; }
+                    else { b.style.color = 'red'; }
+                    b.innerHTML = String.raw`&#9819`;
+                }
+            }
+            let numOfValidQueens = 0;
+            for (let row = 0; row < getDimension(); row++) {
+                for (let col = 0; col < getDimension(); col++) {
+                    const b = getButton(row, col);
+                    if (b.textContent.trim().length !== 0 && b.style.color === 'black') { numOfValidQueens++; }
+                }
+            }
+            if (numOfValidQueens === getDimension()) {
+                document.getElementById('solution-found').style.display = 'block';
             } else {
-                button.innerHTML = String.raw`&nbsp;`;
-                button.style.color = 'black';
+                document.getElementById('solution-found').style.display = 'none';
             }
         });
     });
@@ -110,15 +134,26 @@ const isValid = (button) => {
 
 /** Changes the dimension of the chessboard. */
 const changeDimension = () => {
-    document.getElementById('n').addEventListener('change', (e) => {
+    document.getElementById('n').addEventListener('change', () => {
         document.getElementById('chessboard').innerHTML = '';
         loadChessboard();
         addQueen();
+        updateN();
+        document.getElementById('solution-found').style.display = 'none';
     });
+};
+
+/** Updates the N-value shown in the webpage. */
+const updateN = () => {
+    const ns = document.getElementsByClassName('queen-number');
+    for (let i = 0; i < ns.length; i++) {
+        ns.item(i).textContent = `${getDimension()}`;
+    }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
     loadChessboard();
     addQueen();
+    updateN();
     changeDimension();
 });

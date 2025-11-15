@@ -1,20 +1,24 @@
 <!-- Created by Dayu Wang (dwang@stchas.edu) on 2025-11-13 -->
 
-<!-- Last updated by Dayu Wang (dwang@stchas.edu) on 2025-11-13 -->
+<!-- Last updated by Dayu Wang (dwang@stchas.edu) on 2025-11-15 -->
 
 
 <!DOCTYPE html>
 <html lang='en'>
 <head>
     <meta charset='UTF-8'>
-    <title>8-Queen Puzzle Playground</title>
+    <title>N-Queen Puzzle Playground</title>
     <link rel='stylesheet' type='text/css' href='style/style.css'>
     <script type='text/javascript' src='app/app.js'></script>
 </head>
 <body>
+<p><span class='queen-number'>N</span>-Queen Puzzle</p>
+<p><span class='blue'>[Rule]</span> Place <span class='queen-number'>N</span> queens on the <span class='queen-number'>N</span>-by-<span class='queen-number'>N</span> chessboard so that <strong class='red'>no</strong> two queens threaten each other.</p>
 <div id='chessboard'></div>
 <div id='dimension'>
-    <label for='n'>N = </label><input id='n' value='8'>
+    <label for='n'>N = </label><input id='n' value='8'><br><span id='min-max'>(Min: 4, Max: 10, Default: 8)</span>
 </div>
+<div id='solution-found'>Solution Found!<br>Congratulations!</div>
+<div id='author'>App Developed by<br><strong>Dayu Wang</strong><br>(<a href='mailto:dwang@stchas.edu'>dwang@stchas.edu</a>)</div>
 </body>
 </html>
